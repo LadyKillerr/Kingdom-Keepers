@@ -2,15 +2,23 @@ using UnityEngine;
 
 public class Waypoint : MonoBehaviour
 {
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
-    void Start()
-    {
-        
-    }
+    [SerializeField] Transform towersBin;
+    [SerializeField] GameObject towersPrefab;
 
-    // Update is called once per frame
-    void Update()
+    [SerializeField] bool isPlaceable;
+
+    void OnMouseDown()
     {
-        
+        if (isPlaceable)
+        {
+            Debug.Log("Tiles Coordinates: " + name);
+
+            Vector3 position = transform.position;
+
+            GameObject placedTowers =  Instantiate(towersPrefab, position, Quaternion.identity);
+            isPlaceable = false;
+
+            placedTowers.transform.parent = towersBin.transform;
+        }
     }
 }

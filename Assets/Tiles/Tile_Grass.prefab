@@ -10,6 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 7312407626289949524}
   - component: {fileID: 5818088835582857021}
+  - component: {fileID: 9173396800766256232}
   m_Layer: 0
   m_Name: Tile_Grass
   m_TagString: Untagged
@@ -46,6 +47,28 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b87d4b8138266c0419dd65847d2ee802, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  isPlaceable: 1
+--- !u!65 &9173396800766256232
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1461373408574197675}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 10, y: 0.6087353, z: 10}
+  m_Center: {x: 0, y: -0.3099476, z: 0}
 --- !u!1 &5821844105903243123
 GameObject:
   m_ObjectHideFlags: 0

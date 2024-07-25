@@ -20,7 +20,6 @@ public class EnemyMover : MonoBehaviour
     {
         StartCoroutine(ListWaypointCoordinates());
 
-
     }
 
     IEnumerator ListWaypointCoordinates()
@@ -32,15 +31,19 @@ public class EnemyMover : MonoBehaviour
 
             transform.LookAt(endPosition);
 
+            // tạo biến travelPercent dựa trên thời gian 
             float travelPercent = 0f;
 
+            // sử dụng hàm VectorLerp để đưa vật tới đích đến 1 cách mượt mà thay vì + position trong Update
             while (travelPercent < 1f)
             {
+                // tăng biến Travel Percent lên dần, 1s là sẽ tới endPosition
                 travelPercent += Time.deltaTime * movementSpeed;
                 transform.position = Vector3.Lerp(startPosition, endPosition, travelPercent);
                 yield return new WaitForEndOfFrame();
             }
 
         }
+
     }
 }

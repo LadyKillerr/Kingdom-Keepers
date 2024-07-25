@@ -14,11 +14,15 @@ PrefabInstance:
       objectReference: {fileID: -2432090755550338912, guid: 626410dc07212d749823da2540a223bb, type: 3}
     - target: {fileID: 1461373408574197675, guid: aa95a0d4277b44f47a1cea402afefa81, type: 3}
       propertyPath: m_Name
-      value: Tile_Corner
+      value: Tile_Corner130
       objectReference: {fileID: 0}
     - target: {fileID: 4210101019604988262, guid: aa95a0d4277b44f47a1cea402afefa81, type: 3}
       propertyPath: m_text
       value: 0,0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5818088835582857021, guid: aa95a0d4277b44f47a1cea402afefa81, type: 3}
+      propertyPath: isPlaceable
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 5821844105903243123, guid: aa95a0d4277b44f47a1cea402afefa81, type: 3}
       propertyPath: m_Name
