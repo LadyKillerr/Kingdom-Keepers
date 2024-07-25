@@ -11,7 +11,6 @@ public class Waypoint : MonoBehaviour
     {
         if (isPlaceable)
         {
-            Debug.Log("Tiles Coordinates: " + name);
 
             Vector3 position = transform.position;
 
