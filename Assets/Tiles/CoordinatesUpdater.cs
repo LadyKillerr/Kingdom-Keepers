@@ -11,11 +11,21 @@ public class CoordinatesUpdater : MonoBehaviour
     TextMeshPro label;
     Vector2Int coordinates = new Vector2Int();
 
+    Waypoint waypoint;
+
+    [SerializeField] Color waypointColor = Color.white;
+    [SerializeField] Color blockedColor = Color.gray;
+
 
     private void Awake()
     {
         label = GetComponent<TextMeshPro>();
+        waypoint = GetComponentInParent<Waypoint>();
         DisplayCoordinates();
+
+        // Coordinates is not showing by default - whenever needed press C
+        label.enabled = false;
+
     }
 
     void Update()
@@ -25,7 +35,41 @@ public class CoordinatesUpdater : MonoBehaviour
             DisplayCoordinates();
             UpdateTilesName();
         }
+        ChangeCoordinatesColor();
+        ToggleCoordinates();
     }
+
+    void ToggleCoordinates()
+    {
+        if (Input.GetKeyDown(KeyCode.C))
+        {
+            //if (isCoordinates)
+            //{
+            //    label.enabled = false;
+            //    isCoordinates = false;
+            //}
+            //else
+            //{
+            //    label.enabled = true;
+            //    isCoordinates = true;
+            //}
+            label.enabled = !label.IsActive();
+        }
+    }
+
+    void ChangeCoordinatesColor()
+    {
+        if (waypoint.IsPlaceable)
+        {
+            label.color = waypointColor;
+        }
+        else if (!waypoint.IsPlaceable)
+        {
+            label.color = blockedColor;
+        }
+
+    }
+
 
     void DisplayCoordinates()
     {

@@ -50,9 +50,8 @@ MonoBehaviour:
   placedAudio: {fileID: 8300000, guid: 58c4aa703b16dd54fb261ddb5b25ad74, type: 3}
   placedVolume: 1
   firingAudio: {fileID: 8300000, guid: dc1a596265ed58a419be0a5e0f7b3a92, type: 3}
-  firingVolume: 0.5
+  firingVolume: 0.45
   ballistaTop: {fileID: 6131056645070147807}
-  isFiring: 0
   boltParticles: {fileID: 4907806151662807736}
 --- !u!82 &6202454205095057541
 AudioSource:

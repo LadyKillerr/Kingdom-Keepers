@@ -1,59 +1,87 @@
+﻿using System;
 using System.Collections;
 using UnityEngine;
 
 public class TowersControl : MonoBehaviour
 {
+    [Header("Tower Audio")]
     [SerializeField] AudioClip placedAudio;
     [SerializeField][Range(0, 1)] float placedVolume;
     [SerializeField] AudioClip firingAudio;
     [SerializeField][Range(0, 1)] float firingVolume;
 
-
     [SerializeField] GameObject ballistaTop;
 
-    [SerializeField] bool isFiring = false;
+    int previousNumberOfParticles;
+    int currentNumberOfParticles;
+    [SerializeField] ParticleSystem boltParticles;
+
     EnemyMover enemy;
 
     AudioSource towerAudio;
-    [SerializeField] ParticleSystem boltParticles;
 
     void Awake()
     {
         towerAudio = GetComponent<AudioSource>();
         enemy = FindAnyObjectByType<EnemyMover>();
+
+
     }
 
     void Start()
     {
+        previousNumberOfParticles = 0;
+
         if (towerAudio != null)
         {
-            towerAudio.PlayOneShot(placedAudio, placedVolume);
+            PlayPlacedAudio();
         }
-
-
     }
 
     void Update()
     {
-        //GameObject enemy = GameObject.FindWithTag("Enemy");
-        ballistaTop.transform.LookAt(enemy.transform);
-
-
-        //StartCoroutine(PlayFiringAudio());
-    }
-
-    IEnumerator PlayFiringAudio()
-    {
-        if (boltParticles.isPlaying && isFiring == false)
+        // make towers look at enemy
+        if (enemy != null)
         {
-            towerAudio.PlayOneShot(firingAudio, firingVolume);
+            ballistaTop.transform.LookAt(enemy.transform);
 
-            isFiring = true;
-            yield return new WaitForEndOfFrame();
-            yield return new WaitForSeconds(firingAudio.length);
-
-            isFiring = false;
         }
-        
+
+        PlayBoltFiringSFX();
+
     }
+
+    #region TowerAudio
+    void PlayBoltFiringSFX()
+    {
+        currentNumberOfParticles = boltParticles.particleCount;
+
+        // chạy âm thanh nếu số Particles được spawn ra nhiều hơn số Particles được lưu trong biến
+        if (currentNumberOfParticles > previousNumberOfParticles)
+        {
+            PlayFiringAudio();
+        }
+
+        // gán 2 số bằng nhau
+        previousNumberOfParticles = currentNumberOfParticles;
+    }
+
+
+    void PlayAudioClip(AudioClip audioToPlay, float volume)
+    {
+        towerAudio.PlayOneShot(audioToPlay, volume);
+    }
+
+    public void PlayFiringAudio()
+    {
+        PlayAudioClip(firingAudio, firingVolume);
+    }
+
+    public void PlayPlacedAudio()
+    {
+        PlayAudioClip(placedAudio, placedVolume);
+    } 
+    #endregion
+
+
 }
