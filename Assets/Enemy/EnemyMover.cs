@@ -11,18 +11,43 @@ public class EnemyMover : MonoBehaviour
     [SerializeField] List<Waypoint> enemyPath = new List<Waypoint>();
     [SerializeField] [InspectorRange(0f,5f)]float movementSpeed = 1f;
 
-    private void Update()
-    {
-        
-    }
-
     void Start()
     {
-        StartCoroutine(ListWaypointCoordinates());
+        // tìm đường
+        FindPath();
 
+        // đưa enemyback lại điểm đầu 
+        ReturnToStart();
+
+        // bắt đầu mò đường để đi 
+        StartCoroutine(FollowPath());
     }
 
-    IEnumerator ListWaypointCoordinates()
+    void FindPath()
+    {
+        enemyPath.Clear();
+
+        GameObject parent = GameObject.FindGameObjectWithTag("Path");
+
+        //foreach(GameObject child in parent.transform)
+        //{
+        //    enemyPath.Add(child.GetComponent<Waypoint>());
+        //}
+
+        for(int i = 0; i < parent.transform.childCount; i++)
+        {
+            GameObject child = parent.transform.GetChild(i).gameObject;
+
+            enemyPath.Add(child.GetComponent<Waypoint>());
+        }
+    }
+
+    void ReturnToStart()
+    {
+        transform.position = enemyPath[0].transform.position;
+    }
+
+    IEnumerator FollowPath()
     {
         foreach (Waypoint waypoint in enemyPath)
         {
@@ -44,6 +69,8 @@ public class EnemyMover : MonoBehaviour
             }
 
         }
+
+        Destroy(gameObject);
 
     }
 }
