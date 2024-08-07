@@ -10,8 +10,9 @@ public class EnemyMover : MonoBehaviour
 {
     [SerializeField] List<Waypoint> enemyPath = new List<Waypoint>();
     [SerializeField] [InspectorRange(0f,5f)]float movementSpeed = 1f;
-
-    void Start()
+    
+    // Sử dụng OnEnable thay vì dùng Start vì khi một gameObject được bật lên thì nó sẽ lại Init 1 lần nữa
+    void OnEnable()
     {
         // tìm đường
         FindPath();
@@ -28,11 +29,6 @@ public class EnemyMover : MonoBehaviour
         enemyPath.Clear();
 
         GameObject parent = GameObject.FindGameObjectWithTag("Path");
-
-        //foreach(GameObject child in parent.transform)
-        //{
-        //    enemyPath.Add(child.GetComponent<Waypoint>());
-        //}
 
         for(int i = 0; i < parent.transform.childCount; i++)
         {
@@ -69,8 +65,7 @@ public class EnemyMover : MonoBehaviour
             }
 
         }
-
-        Destroy(gameObject);
-
+        gameObject.SetActive(false);
+      
     }
 }

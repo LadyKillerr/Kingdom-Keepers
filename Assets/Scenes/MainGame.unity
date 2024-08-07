@@ -918,7 +918,7 @@ GameObject:
   m_Component:
   - component: {fileID: 490931853}
   m_Layer: 0
-  m_Name: TowersBin
+  m_Name: TowersPool
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1988,12 +1988,12 @@ GameObject:
   - component: {fileID: 1284001663}
   - component: {fileID: 1284001662}
   m_Layer: 0
-  m_Name: EnemySpawner
+  m_Name: ObjectPool
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!114 &1284001662
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2006,9 +2006,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0918e16b1624ba949a4bc4cc6b32ee5e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  enemyToSpawn: {fileID: 0}
-  spawnDelay: 2
+  isSpawn: 1
+  enemyToSpawn: {fileID: 5040643765344069697, guid: 524771492ce623640b0736b0e209c33c, type: 3}
   startingWaypoint: {fileID: 609148236}
+  spawnDelay: 2
+  poolSize: 5
+  pool: []
 --- !u!4 &1284001663
 Transform:
   m_ObjectHideFlags: 0
@@ -2018,7 +2021,7 @@ Transform:
   m_GameObject: {fileID: 1284001661}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -14.114848, y: 23.987864, z: 5.393919}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []

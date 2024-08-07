@@ -6,7 +6,7 @@ public class EnemyHealth : MonoBehaviour
     [SerializeField] int currentHealth;
     [SerializeField] int damageOnHit = 1;
 
-    private void Start()
+    private void OnEnable()
     {
         currentHealth = maxHealth;
     }
@@ -25,7 +25,7 @@ public class EnemyHealth : MonoBehaviour
         }
         else
         {
-            Destroy(gameObject);
+            gameObject.SetActive(false);
         }
     }
 }
