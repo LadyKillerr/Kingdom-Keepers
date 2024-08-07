@@ -1,13 +1,12 @@
-using NUnit.Framework;
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class ObjectPool : MonoBehaviour
 {
-    [SerializeField] bool isSpawn = true;
     [SerializeField] GameObject enemyToSpawn;
-    [SerializeField] GameObject startingWaypoint;
+    //[SerializeField] GameObject startingWaypoint;
     [SerializeField] float spawnDelay = 2f;
 
     [SerializeField] int poolSize = 5;
@@ -57,13 +56,14 @@ public class ObjectPool : MonoBehaviour
 
     void EnableObjectsInPool()
     {
-        for (int iterator = 0; iterator < pool.Length; iterator++)
+        for (int i = 0; i < pool.Length; i++)
         {
-            if (pool[iterator].activeInHierarchy == false)
+            if (pool[i].activeInHierarchy == false)
             {
-                pool[iterator].SetActive(true);
+                pool[i].SetActive(true);
                 return;
             }
+
         }
     }
 }

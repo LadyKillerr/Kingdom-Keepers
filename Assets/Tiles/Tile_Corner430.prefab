@@ -18,7 +18,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4458899942345965555, guid: 46ef1448db74c9a42898987500761bd2, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 0
+      value: 30
       objectReference: {fileID: 0}
     - target: {fileID: 4458899942345965555, guid: 46ef1448db74c9a42898987500761bd2, type: 3}
       propertyPath: m_LocalRotation.w
@@ -51,6 +51,34 @@ PrefabInstance:
     - target: {fileID: 5538307682883115788, guid: 46ef1448db74c9a42898987500761bd2, type: 3}
       propertyPath: m_Name
       value: Tile_Corner430
+      objectReference: {fileID: 0}
+    - target: {fileID: 7131057157457601985, guid: 46ef1448db74c9a42898987500761bd2, type: 3}
+      propertyPath: m_text
+      value: 0,30
+      objectReference: {fileID: 0}
+    - target: {fileID: 7131057157457601985, guid: 46ef1448db74c9a42898987500761bd2, type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7131057157457601985, guid: 46ef1448db74c9a42898987500761bd2, type: 3}
+      propertyPath: m_fontSize
+      value: 36
+      objectReference: {fileID: 0}
+    - target: {fileID: 7131057157457601985, guid: 46ef1448db74c9a42898987500761bd2, type: 3}
+      propertyPath: m_fontColor.b
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 7131057157457601985, guid: 46ef1448db74c9a42898987500761bd2, type: 3}
+      propertyPath: m_fontColor.g
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 7131057157457601985, guid: 46ef1448db74c9a42898987500761bd2, type: 3}
+      propertyPath: m_fontColor.r
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 7131057157457601985, guid: 46ef1448db74c9a42898987500761bd2, type: 3}
+      propertyPath: m_TextStyleHashCode
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8567716768365852911, guid: 46ef1448db74c9a42898987500761bd2, type: 3}
       propertyPath: m_LocalRotation.w

@@ -24,7 +24,7 @@ public class CoordinatesUpdater : MonoBehaviour
         DisplayCoordinates();
 
         // Coordinates is not showing by default - whenever needed press C
-        label.enabled = false;
+        label.enabled = true;
 
     }
 
@@ -36,7 +36,7 @@ public class CoordinatesUpdater : MonoBehaviour
             UpdateTilesName();
         }
         ChangeCoordinatesColor();
-        ToggleCoordinates();
+        //ToggleCoordinates();
     }
 
     void ToggleCoordinates()
