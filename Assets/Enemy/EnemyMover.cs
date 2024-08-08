@@ -9,7 +9,14 @@ public class EnemyMover : MonoBehaviour
 {
     [SerializeField] List<Waypoint> enemyPath = new List<Waypoint>();
     [SerializeField] [InspectorRange(0f,5f)]float movementSpeed = 1f;
-    
+
+    Enemy enemy;
+
+    private void Awake()
+    {
+        enemy = GetComponent<Enemy>();
+    }
+
     // Sử dụng OnEnable thay vì dùng Start vì khi một gameObject được bật lên thì nó sẽ lại Init 1 lần nữa
     void OnEnable()
     {
@@ -64,6 +71,8 @@ public class EnemyMover : MonoBehaviour
             }
 
         }
+
+        enemy.DecreaseGold();
         gameObject.SetActive(false);
       
     }

@@ -6,6 +6,13 @@ public class EnemyHealth : MonoBehaviour
     [SerializeField] int currentHealth;
     [SerializeField] int damageOnHit = 1;
 
+    Enemy enemy;
+
+    private void Awake()
+    {
+        enemy = GetComponent<Enemy>();
+    }
+
     private void OnEnable()
     {
         currentHealth = maxHealth;
@@ -26,6 +33,7 @@ public class EnemyHealth : MonoBehaviour
         else
         {
             gameObject.SetActive(false);
+            enemy.IncreaseGold();
         }
     }
 }

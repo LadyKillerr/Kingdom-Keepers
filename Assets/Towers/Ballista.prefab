@@ -10,6 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 3049131714819384361}
   - component: {fileID: 2249169933650903322}
+  - component: {fileID: 8759444333568797719}
   - component: {fileID: 6202454205095057541}
   m_Layer: 0
   m_Name: Ballista
@@ -53,6 +54,21 @@ MonoBehaviour:
   firingVolume: 0.45
   ballistaTop: {fileID: 6131056645070147807}
   boltParticles: {fileID: 4907806151662807736}
+--- !u!114 &8759444333568797719
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3219458064393657486}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c2df460847b7c9d42a83596b55dd047e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  gun: {fileID: 3144582324300694500}
+  boltParticles: {fileID: 4907806151662807736}
+  range: 15
 --- !u!82 &6202454205095057541
 AudioSource:
   m_ObjectHideFlags: 0
