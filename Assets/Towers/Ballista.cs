@@ -2,7 +2,7 @@
 using System.Collections;
 using UnityEngine;
 
-public class TowersControl : MonoBehaviour
+public class Ballista : MonoBehaviour
 {
     [Header("Tower Audio")]
     [SerializeField] AudioClip placedAudio;
@@ -16,20 +16,25 @@ public class TowersControl : MonoBehaviour
     int currentNumberOfParticles;
     [SerializeField] ParticleSystem boltParticles;
 
-    EnemyMover enemy;
+    [SerializeField] int ballistaCost = 75;
+    public int TowerCost { get { return ballistaCost; } }
 
+    GameObject parentGameObject;
+
+
+    // reference
     AudioSource towerAudio;
+
 
     void Awake()
     {
         towerAudio = GetComponent<AudioSource>();
-        enemy = FindAnyObjectByType<EnemyMover>();
-
 
     }
 
     void Start()
     {
+
         previousNumberOfParticles = 0;
 
         if (towerAudio != null)
@@ -40,14 +45,29 @@ public class TowersControl : MonoBehaviour
 
     void Update()
     {
-        // make towers look at enemy
-        if (enemy != null)
+
+
+        if (towerAudio != null) { PlayBoltFiringSFX(); }
+
+    }
+
+    public void PlaceTowers(GameObject towerToBePlaced, Vector3 positionToBePlaced)
+    {
+        Bank bank = FindAnyObjectByType<Bank>();
+        parentGameObject = GameObject.FindWithTag("TowerPool");
+
+        if (bank.CurrentBalance >= ballistaCost)
         {
-            ballistaTop.transform.LookAt(enemy.transform);
+
+            bank.Withdrawal(ballistaCost);
+
+            // spawn towers
+            GameObject placedTower = Instantiate(towerToBePlaced, positionToBePlaced, Quaternion.identity);
+
+            // rearrange them to clean up the hierarchy
+            placedTower.transform.parent = parentGameObject.transform;
 
         }
-
-        PlayBoltFiringSFX();
 
     }
 
@@ -80,7 +100,7 @@ public class TowersControl : MonoBehaviour
     public void PlayPlacedAudio()
     {
         PlayAudioClip(placedAudio, placedVolume);
-    } 
+    }
     #endregion
 
 

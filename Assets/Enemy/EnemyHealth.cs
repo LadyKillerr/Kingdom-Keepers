@@ -28,7 +28,7 @@ public class EnemyHealth : MonoBehaviour
         if (currentHealth > damageOnHit)
         {
             currentHealth -= damageOnHit;
-            Debug.Log("Enemy has been deduct health");
+
         }
         else
         {

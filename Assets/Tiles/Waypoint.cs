@@ -1,30 +1,35 @@
-using UnityEngine;
+﻿using UnityEngine;
 
 public class Waypoint : MonoBehaviour
 {
-    GameObject parent;
-    [SerializeField] GameObject towersPrefab;
+    [SerializeField] GameObject towerPrefab;
 
     [SerializeField] bool isPlaceable;
-    // a property - a nicer and cleaner way of get method
     public bool IsPlaceable { get { return isPlaceable; } }
+    // a property - a nicer and cleaner way of get method
 
     private void Awake()
     {
-        parent = GameObject.FindGameObjectWithTag("TowerPool");
+
     }
 
     void OnMouseDown()
     {
         if (isPlaceable)
         {
+            if (towerPrefab != null)
+            {
+                // truyền vào script TowersControl prefab của tower và vị trí để towersControl Instantiate ra
+                towerPrefab.GetComponent<Ballista>().PlaceTowers(towerPrefab, transform.position);
 
-            Vector3 position = transform.position;
-
-            GameObject placedTowers =  Instantiate(towersPrefab, position, Quaternion.identity);
-            isPlaceable = false;
-
-            placedTowers.transform.parent = parent.transform;
+                // only change tiles placeable status if a towers is placed 
+                isPlaceable = !isPlaceable;
+            }
+            else
+            {
+                Debug.Log("towerPrefab is null");
+            }
         }
+
     }
 }
