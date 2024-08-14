@@ -58,6 +58,9 @@ MeshRenderer:
   m_ReflectionProbeUsage: 1
   m_RayTracingMode: 2
   m_RayTraceProcedural: 0
+  m_RayTracingAccelStructBuildFlagsOverride: 0
+  m_RayTracingAccelStructBuildFlags: 1
+  m_SmallMeshCulling: 1
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
@@ -131,7 +134,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 35d664c350708084390ecaa49e7b82bb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  goldReward: 10
+  goldReward: 20
   goldPenalty: 20
 --- !u!114 &2321701306209618344
 MonoBehaviour:
@@ -169,7 +172,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f25a0588e652c3241a9296c1d0c947d1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  maxHealth: 5
+  maxHealth: 4
   currentHealth: 0
   damageOnHit: 1
 --- !u!65 &7177500314151401661

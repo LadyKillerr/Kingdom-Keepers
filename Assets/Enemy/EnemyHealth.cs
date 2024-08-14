@@ -6,6 +6,8 @@ public class EnemyHealth : MonoBehaviour
     [SerializeField] int currentHealth;
     [SerializeField] int damageOnHit = 1;
 
+    bool isDead = false;
+
     Enemy enemy;
 
     private void Awake()
@@ -16,6 +18,7 @@ public class EnemyHealth : MonoBehaviour
     private void OnEnable()
     {
         currentHealth = maxHealth;
+        isDead = false;
     }
 
     void OnParticleCollision(GameObject other)
@@ -32,8 +35,12 @@ public class EnemyHealth : MonoBehaviour
         }
         else
         {
-            gameObject.SetActive(false);
-            enemy.IncreaseGold();
+            if (!isDead)
+            {
+                enemy.IncreaseGold();
+                gameObject.SetActive(false);
+                isDead = true;
+            }
         }
     }
 }

@@ -4,12 +4,7 @@ using UnityEngine;
 
 public class Ballista : MonoBehaviour
 {
-    [Header("Tower Audio")]
-    [SerializeField] AudioClip placedAudio;
-    [SerializeField][Range(0, 1)] float placedVolume;
-    [SerializeField] AudioClip firingAudio;
-    [SerializeField][Range(0, 1)] float firingVolume;
-
+    
     [SerializeField] GameObject ballistaTop;
 
     int previousNumberOfParticles;
@@ -17,17 +12,18 @@ public class Ballista : MonoBehaviour
     [SerializeField] ParticleSystem boltParticles;
 
     [SerializeField] int ballistaCost = 75;
-    public int TowerCost { get { return ballistaCost; } }
+    public int BallistaCost { get { return ballistaCost; } }
 
     GameObject parentGameObject;
 
 
     // reference
     AudioSource towerAudio;
-
+    AudioManager audioManager;
 
     void Awake()
     {
+        audioManager = FindAnyObjectByType<AudioManager>();
         towerAudio = GetComponent<AudioSource>();
 
     }
@@ -39,15 +35,13 @@ public class Ballista : MonoBehaviour
 
         if (towerAudio != null)
         {
-            PlayPlacedAudio();
+            audioManager.PlayPlacedAudio();
         }
     }
 
     void Update()
     {
-
-
-        if (towerAudio != null) { PlayBoltFiringSFX(); }
+        //if (towerAudio != null) { PlayBallistaFiringSFX(); }
 
     }
 
@@ -56,30 +50,30 @@ public class Ballista : MonoBehaviour
         Bank bank = FindAnyObjectByType<Bank>();
         parentGameObject = GameObject.FindWithTag("TowerPool");
 
-        if (bank.CurrentBalance >= ballistaCost)
-        {
 
-            bank.Withdrawal(ballistaCost);
 
-            // spawn towers
-            GameObject placedTower = Instantiate(towerToBePlaced, positionToBePlaced, Quaternion.identity);
 
-            // rearrange them to clean up the hierarchy
-            placedTower.transform.parent = parentGameObject.transform;
+        bank.Withdrawal(ballistaCost);
 
-        }
+        // spawn towers
+        GameObject placedTower = Instantiate(towerToBePlaced, positionToBePlaced, Quaternion.identity);
+
+        // rearrange them to clean up the hierarchy
+        placedTower.transform.parent = parentGameObject.transform;
+
+
 
     }
 
-    #region TowerAudio
-    void PlayBoltFiringSFX()
+
+    void PlayBallistaFiringSFX()
     {
         currentNumberOfParticles = boltParticles.particleCount;
 
         // chạy âm thanh nếu số Particles được spawn ra nhiều hơn số Particles được lưu trong biến
         if (currentNumberOfParticles > previousNumberOfParticles)
         {
-            PlayFiringAudio();
+            audioManager.PlayFiringAudio();
         }
 
         // gán 2 số bằng nhau
@@ -87,21 +81,8 @@ public class Ballista : MonoBehaviour
     }
 
 
-    void PlayAudioClip(AudioClip audioToPlay, float volume)
-    {
-        towerAudio.PlayOneShot(audioToPlay, volume);
-    }
 
-    public void PlayFiringAudio()
-    {
-        PlayAudioClip(firingAudio, firingVolume);
-    }
 
-    public void PlayPlacedAudio()
-    {
-        PlayAudioClip(placedAudio, placedVolume);
-    }
-    #endregion
 
 
 }

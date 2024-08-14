@@ -12,27 +12,56 @@ public class Bank : MonoBehaviour
     [SerializeField] int currentBalance;
     public int CurrentBalance { get { return currentBalance; } }
 
+    [SerializeField] int targetBalance;
+    [SerializeField] float changingDelay = 1;
+    [SerializeField] int changingAmount = 5;
+
+
     [SerializeField] GameObject gameOverUI;
 
     private void Awake()
     {
-        
         currentBalance = startingBalance;
+        targetBalance = currentBalance;
+
+
+    }
+
+    void Update()
+    {
+        StartCoroutine(ChangingCurrentBalance(changingDelay));
+
+    }
+
+    IEnumerator ChangingCurrentBalance(float changingDelay)
+    {
+        if (currentBalance < targetBalance)
+        {
+            currentBalance += changingAmount;
+            yield return new WaitForSecondsRealtime(changingDelay);
+
+        }
+        else if (currentBalance > targetBalance)
+        {
+            currentBalance -= changingAmount;
+            yield return new WaitForSecondsRealtime(changingDelay);
+        }
+
     }
 
     public void Deposit(int amount)
     {
         Debug.Log("Depositing money: " + amount);
-        currentBalance += Mathf.Abs(amount);
+        targetBalance += Mathf.Abs(amount);
     }
 
     public void Withdrawal(int amount)
     {
-        if (currentBalance > Mathf.Epsilon)
+        if (targetBalance > Mathf.Epsilon)
         {
             Debug.Log("Withdraw money: " + amount);
-            currentBalance -= Mathf.Abs(amount);
-            Mathf.Clamp(currentBalance, 0, Mathf.Infinity);
+            targetBalance -= Mathf.Abs(amount);
+            Mathf.Clamp(targetBalance, 0, Mathf.Infinity);
         }
         else
         {
@@ -47,5 +76,5 @@ public class Bank : MonoBehaviour
         }
     }
 
-    
+
 }
