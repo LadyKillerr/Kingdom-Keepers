@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEditor.Build.Content;
 using UnityEngine;
 using UnityEngine.SceneManagement;
@@ -18,6 +19,7 @@ public class Bank : MonoBehaviour
 
 
     [SerializeField] GameObject gameOverUI;
+    [SerializeField] TextMeshProUGUI goldText;
 
     private void Awake()
     {
@@ -38,12 +40,14 @@ public class Bank : MonoBehaviour
         if (currentBalance < targetBalance)
         {
             currentBalance += changingAmount;
+            goldText.text ="Gold: " + currentBalance.ToString();
             yield return new WaitForSecondsRealtime(changingDelay);
 
         }
         else if (currentBalance > targetBalance)
         {
             currentBalance -= changingAmount;
+            goldText.text = "Gold: " + currentBalance.ToString();
             yield return new WaitForSecondsRealtime(changingDelay);
         }
 
