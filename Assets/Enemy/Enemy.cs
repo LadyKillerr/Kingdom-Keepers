@@ -1,21 +1,18 @@
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 
 public class Enemy : MonoBehaviour
 {
-    [SerializeField] int goldReward = 10;
-    [SerializeField] int goldPenalty = 20;
-
     Bank bank;
-
 
     void Awake()
     {
         bank = FindAnyObjectByType<Bank>();
     }
-
-    public void IncreaseGold()
+    
+    public void IncreaseGold(int increaseValue)
     {
         if (bank == null)
         {
@@ -23,11 +20,11 @@ public class Enemy : MonoBehaviour
         }
         else
         {
-            bank.Deposit(goldReward);
+            bank.Deposit(increaseValue);
         }
     }
 
-    public void DecreaseGold()
+    public void DecreaseGold(int decreaseValue)
     {
         if (bank == null)
         {
@@ -35,7 +32,7 @@ public class Enemy : MonoBehaviour
         }
         else
         {
-            bank.Withdrawal(goldPenalty);
+            bank.Withdrawal(decreaseValue);
         }
 
     }

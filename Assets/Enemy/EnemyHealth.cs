@@ -9,10 +9,12 @@ public class EnemyHealth : MonoBehaviour
     bool isDead = false;
 
     Enemy enemy;
+    EnemyDataManager enemyDataManager;
 
     private void Awake()
     {
         enemy = GetComponent<Enemy>();
+        enemyDataManager = FindAnyObjectByType<EnemyDataManager>();
     }
 
     private void OnEnable()
@@ -37,7 +39,7 @@ public class EnemyHealth : MonoBehaviour
         {
             if (!isDead)
             {
-                enemy.IncreaseGold();
+                enemy.IncreaseGold(enemyDataManager.BallistaGoldReward);
                 gameObject.SetActive(false);
                 isDead = true;
             }

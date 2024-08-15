@@ -11,10 +11,12 @@ public class EnemyMover : MonoBehaviour
     [SerializeField] [InspectorRange(0f,5f)]float movementSpeed = 1f;
 
     Enemy enemy;
+    EnemyDataManager enemyDataManager;
 
     private void Awake()
     {
         enemy = GetComponent<Enemy>();
+        enemyDataManager = FindAnyObjectByType<EnemyDataManager>();
     }
 
     // Sử dụng OnEnable thay vì dùng Start vì khi một gameObject được bật lên thì nó sẽ lại Init 1 lần nữa
@@ -72,7 +74,7 @@ public class EnemyMover : MonoBehaviour
 
         }
 
-        enemy.DecreaseGold();
+        enemy.DecreaseGold(enemyDataManager.BallistaGoldPenalty);
         gameObject.SetActive(false);
       
     }

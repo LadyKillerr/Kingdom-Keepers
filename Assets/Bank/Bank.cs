@@ -14,7 +14,6 @@ public class Bank : MonoBehaviour
     public int CurrentBalance { get { return currentBalance; } }
 
     [SerializeField] int targetBalance;
-    [SerializeField] float changingDelay = 1;
     [SerializeField] int changingAmount = 5;
 
 
@@ -31,24 +30,24 @@ public class Bank : MonoBehaviour
 
     void Update()
     {
-        StartCoroutine(ChangingCurrentBalance(changingDelay));
+        StartCoroutine(ChangingCurrentBalance(1f));
 
     }
 
-    IEnumerator ChangingCurrentBalance(float changingDelay)
+    IEnumerator ChangingCurrentBalance(float delayValue)
     {
         if (currentBalance < targetBalance)
         {
             currentBalance += changingAmount;
             goldText.text ="Gold: " + currentBalance.ToString();
-            yield return new WaitForSecondsRealtime(changingDelay);
+            yield return new WaitForSecondsRealtime(1f);
 
         }
         else if (currentBalance > targetBalance)
         {
             currentBalance -= changingAmount;
             goldText.text = "Gold: " + currentBalance.ToString();
-            yield return new WaitForSecondsRealtime(changingDelay);
+            yield return new WaitForSecondsRealtime(1f);
         }
 
     }
@@ -63,14 +62,11 @@ public class Bank : MonoBehaviour
     {
         if (targetBalance > Mathf.Epsilon)
         {
-            Debug.Log("Withdraw money: " + amount);
             targetBalance -= Mathf.Abs(amount);
             Mathf.Clamp(targetBalance, 0, Mathf.Infinity);
         }
         else
         {
-            Debug.Log("You have lose the game...");
-
             // pause the game
             Time.timeScale = 0f;
 
