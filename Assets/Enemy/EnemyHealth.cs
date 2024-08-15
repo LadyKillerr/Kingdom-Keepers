@@ -1,12 +1,16 @@
 using UnityEngine;
 
+[RequireComponent(typeof(Enemy))]
 public class EnemyHealth : MonoBehaviour
 {
+    bool isDead = false;
+    
     [SerializeField] int maxHealth = 5;
     [SerializeField] int currentHealth;
     [SerializeField] int damageOnHit = 1;
 
-    bool isDead = false;
+    [Tooltip("The amount of health enemy increase after every lives")]
+    [SerializeField] int difficultyRamp = 1;
 
     Enemy enemy;
     EnemyDataManager enemyDataManager;
@@ -39,6 +43,8 @@ public class EnemyHealth : MonoBehaviour
         {
             if (!isDead)
             {
+                maxHealth += difficultyRamp;
+
                 enemy.IncreaseGold(enemyDataManager.BallistaGoldReward);
                 gameObject.SetActive(false);
                 isDead = true;

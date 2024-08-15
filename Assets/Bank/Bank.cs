@@ -25,13 +25,14 @@ public class Bank : MonoBehaviour
         currentBalance = startingBalance;
         targetBalance = currentBalance;
 
-
+        
     }
 
     void Update()
     {
         StartCoroutine(ChangingCurrentBalance(1f));
 
+        goldText.text = "Gold: " + currentBalance;
     }
 
     IEnumerator ChangingCurrentBalance(float delayValue)
