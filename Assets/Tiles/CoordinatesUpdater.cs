@@ -6,6 +6,7 @@ using UnityEngine;
 using UnityEngine.UI;
 
 [ExecuteAlways]
+[RequireComponent(typeof(TextMeshPro))]
 public class CoordinatesUpdater : MonoBehaviour
 {
     TextMeshPro label;

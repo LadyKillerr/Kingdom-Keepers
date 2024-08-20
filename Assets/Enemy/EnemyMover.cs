@@ -5,6 +5,7 @@ using Unity.VisualScripting;
 using UnityEditor.Animations;
 using UnityEngine;
 
+[RequireComponent(typeof(Enemy))]
 public class EnemyMover : MonoBehaviour
 {
     [SerializeField] List<Waypoint> enemyPath = new List<Waypoint>();
@@ -12,6 +13,7 @@ public class EnemyMover : MonoBehaviour
 
     Enemy enemy;
     EnemyDataManager enemyDataManager;
+
 
     private void Awake()
     {
