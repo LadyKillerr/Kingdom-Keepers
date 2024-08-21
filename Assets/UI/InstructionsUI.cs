@@ -11,9 +11,12 @@ public class InstructionsUI : MonoBehaviour
 
     EnemyDataManager enemyDataManager;
 
+    SessionManager sessionManager;
+
     void Awake()
     {
-        enemyDataManager = FindAnyObjectByType<EnemyDataManager>();    
+        enemyDataManager = FindAnyObjectByType<EnemyDataManager>();
+        sessionManager = FindAnyObjectByType<SessionManager>();
     }
 
     private void Start()
@@ -25,12 +28,15 @@ public class InstructionsUI : MonoBehaviour
     {
         instructionsUI.SetActive(false);
         Time.timeScale = 1;
+        sessionManager.SetIsPaused(false);
     }
 
     public void OpenInstructionsUI()
     {
         instructionsUI.SetActive(true);
         Time.timeScale = 0;
+        sessionManager.SetIsPaused(true);
+
 
     }
 

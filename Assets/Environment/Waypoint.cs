@@ -15,19 +15,19 @@ public class Waypoint : MonoBehaviour
 
     Bank bank;
     AudioManager audioManager;
-
+    SessionManager sessionManager;
 
     private void Awake()
     {
         bank = FindAnyObjectByType<Bank>();
         audioManager = FindAnyObjectByType<AudioManager>();
-
+        sessionManager = FindAnyObjectByType<SessionManager>();
         lackGoldWarning = GameObject.FindGameObjectWithTag("LackGoldWarning");
     }
 
     void OnMouseDown()
     {
-        if (isPlaceable)
+        if (isPlaceable && !sessionManager.IsPaused)
         {
             if (ballistaPrefab != null && bank.CurrentBalance >= ballistaPrefab.GetComponent<Ballista>().BallistaCost )
             {

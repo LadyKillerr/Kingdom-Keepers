@@ -55,7 +55,6 @@ public class Bank : MonoBehaviour
 
     public void Deposit(int amount)
     {
-        Debug.Log("Depositing money: " + amount);
         targetBalance += Mathf.Abs(amount);
     }
 
